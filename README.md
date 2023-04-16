@@ -32,4 +32,4 @@ when the server writes done to the other client have it kill itself. Now the onl
 originally put in done is still going to sit at the make a selection part, so its kinda the same thing since the client has to make a selection
 before read even becomes available, in which case may as well have both of them input done since they both have to get past the make a selection
 part of the code before they can even take in a server input otherwise unless you have a way to bypass that cin line magically when the server
-want to kill the other client then idk how to do this
+want to kill the other client then idk how to do this.
