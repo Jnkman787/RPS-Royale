@@ -12,26 +12,27 @@ int main(void)
 	string userIn;
 	Socket clientSocket = Socket("127.0.0.1",2000);
 	clientSocket.Open();
+
+	cout << "Waiting for opponent to enter" << endl;
+	clientSocket.Read(temp);
+	cout << "Opponent has entered" << endl;
+
 	while(true) {
-		cout << "enter a string" << endl;
+		cout << "Enter a option: rock, paper, scissors" << endl;
 		cin >> userIn;
 		clientSocket.Write(ByteArray(userIn));
+		cout << "Waiting for opponent to lock in" << endl;
 		if(userIn == "done") {
 			clientSocket.Close();
 			cout << "ending client" <<endl;
 			break;
 		}
-		// if(userIn == "murder") {
-		// 	clientSocket.Close();
-		// 	cout << "ending client" << endl;
-		// 	break;
-		// }
 		bufferSize = clientSocket.Read(temp);
 		if(temp.ToString() == "done" || bufferSize == 0) {
-			cout << "Server Shutdown" << endl;
+			cout << "Game Shutdown" << endl;
 			clientSocket.Close();
 			break;
 		}
-		cout << temp.ToString() << endl;
+		cout << "Result: " << temp.ToString() << endl;
 	}
 }
